@@ -1,7 +1,7 @@
 "use strict";
 
 async function getData() {
-    const url = "https://jsonplaceholder.typicode.com/posts"; // Correct URL
+    const url = "https://jsonplaceholder.typicode.com/posts"; 
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -9,7 +9,7 @@ async function getData() {
         }
 
         const json = await response.json();
-        console.log("First post title:", json[0].title); // Display the title of the first post
+        console.log("First post title:", json[0].title);
     } catch (error) {
         console.error(error.message);
     }
@@ -43,9 +43,8 @@ async function postData() {
     }
 }
 
-
-async function getGitHubUser(username) {
-    const url = `https://api.github.com/users/${username}`;
+async function getGitHubUser() {
+    const url = `https://api.github.com/users/zygarde22`; // Hardcoded your username
 
     try {
         const response = await fetch(url);
@@ -62,8 +61,7 @@ async function getGitHubUser(username) {
     }
 }
 
-// Replace 'your-username' with your actual GitHub username
-getGitHubUser("your-username");
 // Call functions
+getGitHubUser();
 getData();
 postData();
