@@ -1,7 +1,7 @@
 "use strict";
 
 async function getGitHubUser() {
-    const url = `https://api.github.com/users/zygarde22`;
+    const url = `https://api.github.com/users/Zygarde22`;
 
     try {
         const response = await fetch(url);
@@ -19,7 +19,7 @@ async function getGitHubUser() {
 }
 
 async function listGitHubRepos() {
-    const url = `https://api.github.com/users/zygarde22/repos`;
+    const url = `https://api.github.com/users/Zygarde22/repos`;
 
     try {
         const response = await fetch(url);
