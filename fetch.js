@@ -10,9 +10,12 @@ async function getGitHubUser() {
         }
 
         const user = await response.json();
-        console.log("Username:", user.login);
-        console.log("Public Repositories:", user.public_repos);
-        console.log("Profile URL:", user.html_url);
+        
+        // Update HTML elements with user data
+        document.getElementById("username").textContent = user.login;
+        document.getElementById("repoCount").textContent = user.public_repos;
+        document.getElementById("profileUrl").href = user.html_url;
+        document.getElementById("profileUrl").textContent = user.html_url;
     } catch (error) {
         console.error(error.message);
     }
@@ -28,16 +31,20 @@ async function listGitHubRepos() {
         }
 
         const repos = await response.json();
+        
+        // Clear the previous list of repositories
+        const reposList = document.getElementById("repos");
+        reposList.innerHTML = "";
+
         console.log("First five repositories:");
 
+        // Show first five repositories in the list
         repos.slice(0, 5).forEach((repo, index) => {
-            console.log(`${index + 1}. ${repo.name}`);
+            const listItem = document.createElement("li");
+            listItem.textContent = `${index + 1}. ${repo.name}`;
+            reposList.appendChild(listItem);
         });
     } catch (error) {
         console.error(error.message);
     }
 }
-
-// Call functions
-getGitHubUser();
-listGitHubRepos();
