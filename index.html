@@ -1,19 +1,59 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>API Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub User Info</title>
+    <script defer src="fetch.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            margin: 10px 0;
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #userInfo, #repoList {
+            margin-top: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-
 <body>
-    <h2>This is to Test API's</h2>
-    <p>
-        Lorem ipsum dolor sit amet 
-        consectetur adipisicing elit. 
-        Illum qui assumenda pariatur, quae ea, molestias facilis ut, mollitia exercitationem provident eos 
-        excepturi numquam rem totam laborum debitis expedita cumque ratione.
 
-    </p>
+    <h1>GitHub User Info</h1>
+    <button onclick="getGitHubUser()">Get User Info</button>
+    <button onclick="listGitHubRepos()">List Repositories</button>
+
+    <div id="userInfo">
+        <h2>User Information</h2>
+        <p><strong>Username:</strong> <span id="username">N/A</span></p>
+        <p><strong>Public Repos:</strong> <span id="repoCount">N/A</span></p>
+        <p><strong>Profile:</strong> <a id="profileUrl" href="#" target="_blank">N/A</a></p>
+    </div>
+
+    <div id="repoList">
+        <h2>Repositories</h2>
+        <ul id="repos"></ul>
+    </div>
+
 </body>
-
 </html>
