@@ -1,50 +1,7 @@
 "use strict";
 
-async function getData() {
-    const url = "https://jsonplaceholder.typicode.com/posts"; 
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const json = await response.json();
-        console.log("First post title:", json[0].title);
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-async function postData() {
-    const url = "https://jsonplaceholder.typicode.com/posts";
-    const data = {
-        title: "Hello GitHub",
-        body: "This is a sample post",
-        userId: 1
-    };
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const json = await response.json();
-        console.log("Posted data response:", json);
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
 async function getGitHubUser() {
-    const url = `https://api.github.com/users/zygarde22`; // Hardcoded your username
+    const url = `https://api.github.com/users/zygarde22`;
 
     try {
         const response = await fetch(url);
@@ -61,7 +18,26 @@ async function getGitHubUser() {
     }
 }
 
+async function listGitHubRepos() {
+    const url = `https://api.github.com/users/zygarde22/repos`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const repos = await response.json();
+        console.log("First five repositories:");
+
+        repos.slice(0, 5).forEach((repo, index) => {
+            console.log(`${index + 1}. ${repo.name}`);
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
 // Call functions
 getGitHubUser();
-getData();
-postData();
+listGitHubRepos();
