@@ -43,6 +43,27 @@ async function postData() {
     }
 }
 
+
+async function getGitHubUser(username) {
+    const url = `https://api.github.com/users/${username}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const user = await response.json();
+        console.log("Username:", user.login);
+        console.log("Public Repositories:", user.public_repos);
+        console.log("Profile URL:", user.html_url);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+// Replace 'your-username' with your actual GitHub username
+getGitHubUser("your-username");
 // Call functions
 getData();
 postData();
